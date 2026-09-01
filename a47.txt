@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Boxers Train — Inside the Gym</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Work+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --concrete:#E7E4DE;
+    --concrete-dim:#DAD6CD;
+    --chalk:#F6F4EF;
+    --ink:#201F1D;
+    --ink-soft:#4B4844;
+    --steel:#3E525B;
+    --steel-light:#61787F;
+    --tape:#C4451F;
+    --tape-dark:#9B3517;
+    --line:rgba(32,31,29,0.15);
+    --line-on-dark:rgba(246,244,239,0.18);
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--concrete);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.65;
+  }
+  h1,h2,h3,.stat-num,.tick-num{
+    font-family:'Space Grotesk', sans-serif;
+    letter-spacing:-0.01em;
+  }
+  img{max-width:100%; display:block;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 clamp(1.25rem,4vw,3rem);}
+
+  .tape-strip{
+    height:10px;
+    background:repeating-linear-gradient(45deg, var(--tape) 0 14px, var(--tape-dark) 14px 28px);
+  }
+
+  .topbar{
+    padding:1.5rem clamp(1.25rem,4vw,3rem);
+    display:flex; justify-content:space-between; align-items:center;
+    color:var(--chalk);
+  }
+  .topbar .mark{font-size:1.05rem; font-weight:600;}
+  .topbar .sub{font-size:0.8rem; color:rgba(246,244,239,0.6);}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative; background:var(--ink); overflow:hidden;}
+  .hero-media{position:relative; height:min(78vh,640px); min-height:420px;}
+  .hero-media img{
+    width:100%; height:100%; object-fit:cover; object-position:center 30%;
+    filter:grayscale(35%) contrast(1.08);
+    opacity:0.6;
+  }
+  .hero-media::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(32,31,29,0.3) 0%, rgba(32,31,29,0.6) 55%, var(--ink) 100%);
+  }
+  .hero-text{position:absolute; left:0; right:0; bottom:0; padding:0 clamp(1.25rem,4vw,3rem) 2.4rem;}
+  .hero-text-inner{max-width:var(--maxw); margin:0 auto; animation:riseIn 900ms ease-out both;}
+  @keyframes riseIn{from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:translateY(0);}}
+  .hero h1{
+    color:var(--chalk);
+    font-size:clamp(2.6rem, 7.4vw, 5rem);
+    margin:0 0 0.5rem;
+    line-height:1.02;
+    font-weight:700;
+  }
+  .hero p.lede{
+    font-size:clamp(1.02rem, 1.9vw, 1.25rem);
+    max-width:38ch;
+    color:rgba(246,244,239,0.78);
+    margin:0;
+  }
+  .hero-credit{font-size:0.75rem; color:rgba(246,244,239,0.45); margin-top:0.9rem;}
+
+  .stat-strip{background:var(--ink); border-top:1px solid var(--line-on-dark);}
+  .stat-strip .wrap{display:grid; grid-template-columns:repeat(3,1fr);}
+  .stat{padding:1.6rem 1rem; text-align:center; border-left:1px solid var(--line-on-dark);}
+  .stat:first-child{border-left:none;}
+  .stat-num{color:var(--chalk); font-size:clamp(1.5rem,3.4vw,2.2rem); font-weight:600; line-height:1;}
+  .stat-label{color:rgba(246,244,239,0.6); font-size:0.8rem; margin-top:0.45rem;}
+
+  /* ---------- sections ---------- */
+  section{padding:clamp(3.5rem,7vw,6rem) 0;}
+  h2{
+    font-size:clamp(1.9rem, 4vw, 2.7rem);
+    font-weight:600;
+    margin:0 0 1.3rem;
+    line-height:1.08;
+  }
+  .section-intro{max-width:60ch; font-size:1.06rem; color:var(--ink-soft);}
+  .prose{max-width:66ch; font-size:1.02rem;}
+  .prose p{margin:0 0 1.1rem;}
+  .prose p:last-child{margin-bottom:0;}
+
+  .split{
+    display:grid; grid-template-columns:1.05fr 0.95fr;
+    gap:clamp(2rem,5vw,4rem); align-items:center;
+  }
+  .split.reverse .split-media{order:2;}
+  .split.reverse .split-text{order:1;}
+  .split-media img{width:100%; height:clamp(280px,38vw,420px); object-fit:cover;}
+  figcaption{font-size:0.78rem; color:var(--ink-soft); margin-top:0.6rem;}
+  @media (max-width:820px){
+    .split, .split.reverse{grid-template-columns:1fr;}
+    .split-media, .split.reverse .split-media{order:1;}
+    .split-text, .split.reverse .split-text{order:2;}
+  }
+
+  /* ---------- dark band ---------- */
+  .dark-section{background:var(--ink); color:var(--chalk);}
+  .dark-section h2{color:var(--chalk);}
+  .dark-section .section-intro{color:rgba(246,244,239,0.72);}
+  .dark-section .prose{color:rgba(246,244,239,0.85);}
+  .dark-section figcaption{color:rgba(246,244,239,0.5);}
+
+  /* training-week ticker */
+  .week{
+    margin-top:2.4rem;
+    display:grid;
+    grid-template-columns:repeat(6,1fr);
+    border-top:1px solid var(--line-on-dark);
+    border-left:1px solid var(--line-on-dark);
+  }
+  .day{
+    padding:1.2rem 1rem;
+    border-right:1px solid var(--line-on-dark);
+    border-bottom:1px solid var(--line-on-dark);
+  }
+  .day .tick-num{color:var(--tape); font-size:0.85rem; display:block; margin-bottom:0.4rem;}
+  .day p{margin:0; font-size:0.86rem; color:rgba(246,244,239,0.82);}
+  @media (max-width:820px){.week{grid-template-columns:repeat(3,1fr);}}
+  @media (max-width:480px){.week{grid-template-columns:repeat(2,1fr);}}
+
+  /* equipment grid */
+  .grid-cells{
+    margin-top:2.2rem;
+    display:grid; grid-template-columns:repeat(2,1fr);
+    border-top:1px solid var(--line); border-left:1px solid var(--line);
+  }
+  .cell{padding:1.6rem clamp(1.1rem,2.4vw,1.8rem); border-right:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .cell h3{font-size:1.02rem; font-weight:600; margin:0 0 0.5rem; color:var(--steel);}
+  .cell p{margin:0; font-size:0.95rem; color:var(--ink-soft);}
+  @media (max-width:640px){.grid-cells{grid-template-columns:1fr;}}
+
+  /* gallery */
+  .gallery{display:grid; grid-template-columns:1.3fr 1fr; gap:1.2rem; margin-top:2.5rem;}
+  .gallery img{width:100%; height:100%; object-fit:cover;}
+  .gallery figure{margin:0; height:100%;}
+  .gallery-tall{height:clamp(320px,42vw,460px);}
+  @media (max-width:820px){.gallery{grid-template-columns:1fr;} .gallery-tall{height:280px;}}
+
+  .closing{background:var(--steel); color:var(--chalk);}
+  .closing h2{color:var(--chalk);}
+  .closing .prose{color:rgba(246,244,239,0.9); max-width:60ch;}
+  .closing .prose strong{color:var(--chalk);}
+
+  footer{
+    background:var(--ink);
+    border-top:1px solid var(--line-on-dark);
+    color:rgba(246,244,239,0.5);
+    font-size:0.8rem;
+    padding:2rem 0 2.6rem;
+  }
+  footer .wrap{display:flex; flex-wrap:wrap; gap:0.5rem 1.5rem; justify-content:space-between;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="topbar">
+    <span class="mark">Inside the Gym</span>
+    <span class="sub">how boxers train</span>
+  </div>
+  <div class="hero-media">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fighter_Rosalia_Calla_hits_focus_mitts_with_Manny_Sobral.jpg"
+         alt="A boxer strikes focus mitts held by her coach during a training session"
+         loading="eager">
+    <div class="hero-text">
+      <div class="hero-text-inner">
+        <h1>Most of boxing happens nowhere near a ring</h1>
+        <p class="lede">A fight might last thirty-six minutes. Getting ready for it takes months of mornings most people never see.</p>
+        <p class="hero-credit">A fighter working the focus mitts with her coach — Photo via Wikimedia Commons</p>
+      </div>
+    </div>
+  </div>
+  <div class="stat-strip">
+    <div class="wrap">
+      <div class="stat">
+        <div class="stat-num">6 days</div>
+        <div class="stat-label">a typical training week for a competitive boxer</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3 min</div>
+        <div class="stat-label">the standard length of a round of bag work</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">8–12</div>
+        <div class="stat-label">weeks of camp built around a single fight</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tape-strip"></div>
+
+<section>
+  <div class="wrap">
+    <h2>The fight is the smallest part</h2>
+    <p class="section-intro">Watch a fight on television and you see the finished product. What you don't see is the part that actually decides it — the hundreds of hours in a gym that most of the audience will never set foot in.</p>
+    <div class="prose" style="margin-top:1.6rem;">
+      <p>A boxer preparing for a fight builds a training camp around it, usually eight to twelve weeks long, that layers three very different kinds of work on top of each other: conditioning to build the engine that gets a fighter through twelve rounds, technical work to sharpen the punches and footwork that actually win rounds, and sparring to test all of it against another person who's trying just as hard to make it not work.</p>
+      <p>None of it looks like much on its own. A skipping rope. A leather bag on a chain. A coach's hands held up at odd angles. But stacked up over weeks, it's what separates a fighter who can take a punch from one who never needed to.</p>
+    </div>
+  </div>
+</section>
+
+<section class="dark-section">
+  <div class="wrap">
+    <div class="split">
+      <div class="split-text">
+        <h2>What a training week looks like</h2>
+        <div class="prose">
+          <p>No two gyms run things identically, but most competitive training weeks follow a similar shape: heavier days early in the week when energy is highest, lighter technical days built in to let the body recover, and a rest day that isn't really optional no matter how it feels.</p>
+        </div>
+        <div class="week">
+          <div class="day"><span class="tick-num">Mon</span><p>Roadwork and bag rounds</p></div>
+          <div class="day"><span class="tick-num">Tue</span><p>Pad work and technique</p></div>
+          <div class="day"><span class="tick-num">Wed</span><p>Sparring</p></div>
+          <div class="day"><span class="tick-num">Thu</span><p>Strength and conditioning</p></div>
+          <div class="day"><span class="tick-num">Fri</span><p>Pad work and speed drills</p></div>
+          <div class="day"><span class="tick-num">Sat</span><p>Light sparring or rest</p></div>
+        </div>
+      </div>
+      <div class="split-media">
+        <figure>
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Billy_Irwin_in_his_gym_in_Niagara_Falls.jpg"
+               alt="A boxing gym interior with equipment and training space"
+               loading="lazy">
+          <figcaption>A working boxing gym — most of a fighter's life happens in rooms like this one. Photo: Wikimedia Commons</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="split reverse">
+      <div class="split-text">
+        <h2>The bag does the boring work</h2>
+        <div class="prose">
+          <p>The heavy bag is where a lot of the actual conditioning happens — three-minute rounds of combinations thrown at close to full effort, simulating the pace and output of an actual fight without another person on the other end of the punches. It builds shoulder endurance, teaches a fighter to keep their hands up when they're tired, and turns a combination from something they think about into something their body just does.</p>
+          <p>Standing bags, like the one pictured, add another layer: because they can be struck from any angle and don't swing away the same way a hanging bag does, they're often used to drill body shots and angles that are harder to practise otherwise.</p>
+        </div>
+      </div>
+      <div class="split-media">
+        <figure>
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Bop-bag_punching_target.JPG"
+               alt="A free-standing punching bag used for boxing training"
+               loading="lazy">
+          <figcaption>A free-standing punching bag, used to drill combinations and body shots. Photo: Wikimedia Commons</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>The tools of a training day</h2>
+    <p class="section-intro">Strip a boxing gym down to what actually gets used every day, and it's a shorter list than people expect.</p>
+    <div class="grid-cells">
+      <div class="cell">
+        <h3>Skipping rope</h3>
+        <p>Cheap, portable, and brutal on the calves — used to build footwork rhythm and cardiovascular endurance before the gloves even come out.</p>
+      </div>
+      <div class="cell">
+        <h3>Heavy bag</h3>
+        <p>For power, combinations, and pacing — teaching a fighter what it actually feels like to throw hard, repeatedly, without getting tired too soon.</p>
+      </div>
+      <div class="cell">
+        <h3>Focus mitts</h3>
+        <p>Worn by a coach, who calls out combinations in real time so a fighter reacts to a moving target instead of a fixed one — closer to a real opponent than any bag.</p>
+      </div>
+      <div class="cell">
+        <h3>Speed bag</h3>
+        <p>The small, fast-rebounding bag builds hand speed, timing, and shoulder rhythm, and doubles as a way to warm up the hands before harder work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="dark-section">
+  <div class="wrap">
+    <h2>Learning to move before learning to hit</h2>
+    <div class="prose" style="margin-bottom:2.2rem;">
+      <p>New fighters are often surprised how little of an early boxing lesson is spent throwing punches. Stance, balance, and footwork come first, because a punch thrown from bad footing has nowhere to put its power, and a fighter who can't move properly is an easy target no matter how hard they can hit. Coaches will spend weeks on nothing but the jab and simple footwork drills before a beginner is trusted with a combination — not because it's difficult to teach, but because it's the one habit that every later skill depends on.</p>
+    </div>
+    <div class="gallery">
+      <figure class="gallery-tall">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Rope_jumping.jpg"
+             alt="A person skipping rope as part of boxing conditioning training"
+             loading="lazy">
+        <figcaption>Skipping rope — often the first fifteen minutes of any training session. Photo: Wikimedia Commons</figcaption>
+      </figure>
+      <figure class="gallery-tall">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Twins_Focus_Mitts_%283235352894%29.jpg"
+             alt="A pair of focus mitts used by boxing coaches to call combinations"
+             loading="lazy">
+        <figcaption>Focus mitts, worn by a coach to catch combinations in real time. Photo: Wikimedia Commons</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="split">
+      <div class="split-text">
+        <h2>Sparring: where it all gets tested</h2>
+        <div class="prose">
+          <p>Sparring is the one part of training that can't be simulated with equipment — controlled, supervised rounds against another fighter, at a pace and intensity well below a real fight, meant for learning rather than winning. It's where a jab that looked perfect on the bag either holds up against someone moving and thinking back, or falls apart the first time it's actually needed.</p>
+          <p>Good gyms treat sparring carefully: matching partners by size and experience, capping the intensity, and using it to build judgment under pressure rather than just toughness. It's less about who "won" a sparring session and more about what a fighter learns they still need to fix before fight night.</p>
+        </div>
+      </div>
+      <div class="split-media">
+        <figure>
+          <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Footwork.jpg"
+               alt="A boxer demonstrating footwork and stance during training"
+               loading="lazy">
+          <figcaption>Footwork drills — the foundation every other skill in boxing is built on. Photo: Wikimedia Commons</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <h2>Why the routine matters more than the highlight reel</h2>
+    <div class="prose">
+      <p>There's a reason boxers talk about training camp with more weight in their voice than they talk about any single fight — the fight is over in minutes, but the camp is where the actual work lives. It's repetitive, often unglamorous, and almost entirely invisible to anyone watching from ringside. But it's also the part of the sport that's most honest: there's no shortcut through a skipping rope, and no amount of talent skips the rounds on the bag.</p>
+      <p><strong>None of this page is selling anything</strong> — it's simply a look at the part of boxing that happens before anyone ever steps through the ropes.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>Photographs: Wikimedia Commons contributors, used under their published licences.</span>
+    <span>A page about training, nothing more.</span>
+  </div>
+</footer>
+
+</body>
+</html>
